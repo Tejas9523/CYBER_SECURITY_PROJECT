@@ -29,11 +29,6 @@ The project consists of the following files:
 * script.js: The JavaScript file containing the implementation of the Caesar cipher algorithm.
 * README.md: The readme file with instructions and information about the project.
 
-## Compatibility ##
-This Caesar cipher encryption/decryption tool should work on most modern web browsers that support JavaScript. No additional libraries or frameworks are required.
+![Screenshot 2024-04-27 082826](https://github.com/Tejas9523/Cyber-Security-Project/assets/112255875/a9a6c55e-3295-4cdd-b41d-cfa082db73c6)
+![Screenshot 2024-04-27 082841](https://github.com/Tejas9523/Cyber-Security-Project/assets/112255875/4accacd0-5e95-4fba-bfaf-645258e70ca0)
 
-## License ##
-This project is licensed under the MIT License. Feel free to modify and use the code as per your needs.
-
-## Acknowledgments ##
-This project was inspired by the concept of the Caesar cipher and was created for educational purposes.
