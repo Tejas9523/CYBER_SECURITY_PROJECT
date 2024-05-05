@@ -15,5 +15,7 @@
 
 **7. One Time Pad Cipher:** One Time Pad algorithm is the improvement of the Vernam Cipher, proposed by An Army Signal Corp officer, Joseph Mauborgne. It is the only available algorithm that is unbreakable(completely secure). It is a method of encrypting alphabetic plain text. It is one of the Substitution techniques which converts plain text into ciphertext. In this mechanism, we assign a number to each character of the Plain-Text.
 
+
+![Screenshot 2024-05-05 190210](https://github.com/Tejas9523/Cyber-Security-Project/assets/112255875/b4478690-7f47-4e96-b0bd-0d3bad081932)
 ![Screenshot 2024-05-05 184834](https://github.com/Tejas9523/Cyber-Security-Project/assets/112255875/52cc15c4-cadc-473d-b99f-639c7f5211b5)
 ![Screenshot 2024-05-05 184853](https://github.com/Tejas9523/Cyber-Security-Project/assets/112255875/548b04af-a35c-4383-8707-0a58dc5ee33c)
