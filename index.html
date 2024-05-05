@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher Encryption and Decryption</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background-color: #012453;
+        }
+
+        h2 {
+            padding: 3%;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border-radius: 10px;
+            color: #00B3FE;
+        }
+
+        form {
+            display: flex;
+            margin: 10%;
+            margin-top: 4%;
+            margin-bottom: 0%;
+            padding: 3%;
+            border-radius: 5px;
+            /* background-color: black; */
+            background-color: #030d1f;
+            box-shadow: 0px 0px 0px 1px white;
+            height: fit-content;
+        }
+
+        section {
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #sec1 {
+            width: 50%;
+            padding: 5%;
+            height: 540px;
+            box-shadow: 0px 0px 0px 1px skyblue;
+        }
+
+        textarea {
+            box-shadow: 5px 5px 15px 1px black;
+            height: 10px;
+            padding: 20px 80px 20px 80px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        #inputText {
+            background-color: black;
+        }
+
+        #outputText {
+            background-color: black;
+        }
+
+        #cipherMethod {
+            color: white;
+            border: 2px solid grey;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <form class="p-5">
+        <section>
+            <!-- <label for="inputText">Enter Text:</label><br> -->
+            <textarea id="inputText" rows="9" cols="50" class="form-control p-3  text-light"
+                placeholder="Enter Text"></textarea><br><br>
+
+            <!-- <label for="outputText">Result:</label><br> -->
+            <textarea id="outputText" rows="9" cols="50" class="form-control p-3" readonly
+                placeholder=" Result"></textarea>
+        </section>
+        <section id="sec1">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/2592/2592317.png" height="100px"><br><br>
+            <h2 id="title1">CIPHER ENCRYPTION & DECRYPTION</h2>
+            <hr color="white"><br>
+            <select id="cipherMethod" class="btn btn-lg dropdown-toggle bg-dark text-secondary">
+                <option selected>Choose Cipher Method</option>
+                <option value="CAESAR CIPHER">Caesar Cipher</option>
+                <option value="HILL CIPHER">Hill Cipher</option>
+                <option value="PLAYFAIR CIPHER">Playfair Cipher</option>
+                <option value="MONOALPHABETIC CIPHER">Monoalphabetic Cipher</option>
+                <option value="POLYALPHABETIC CIPHER">Polyalphabetic Cipher</option>
+                <option value="ONE TIME PAD CIPHER">One Time Pad Cipher</option>
+                <option value="FIESTAL CIPHER">Fiestal Cipher</option>
+            </select><br><br>
+            <button type="button" class="btn btn-danger m-1" onclick="encryptText()">Encrypt</button>
+            <button type="button" class="btn btn-success m-1" onclick="decryptText()">Decrypt</button><br><br>
+        </section>
+    </form>
+
+
+    <script>
+        function encryptText() {
+            document.getElementById("outputText").style.color = "Red";
+            let inputText = document.getElementById("inputText").value;
+            let cipherMethod = document.getElementById("cipherMethod").value;
+            let outputText = "";
+            document.getElementById("title1").innerHTML = cipherMethod;
+
+            // Implement encryption logic based on selected cipher method
+            switch (cipherMethod) {
+                case "CAESAR CIPHER":
+                    outputText = caesarCipherEncrypt(inputText);
+                    break;
+                case "HILL CIPHER":
+                    outputText = hillCipherEncrypt(inputText);
+                    break;
+                case "PLAYFAIR CIPHER":
+                    outputText = playfairCipherEncrypt(inputText);
+                    break;
+                case "MONOALPHABETIC CIPHER":
+                    outputText = monoalphabeticCipherEncrypt(inputText);
+                    break;
+                case "POLYALPHABETIC CIPHER":
+                    outputText = polyalphabeticCipherEncrypt(inputText);
+                    break;
+                case "ONE TIME PAD CIPHER":
+                    outputText = oneTimePadCipherEncrypt(inputText);
+                    break;
+                case "FIESTAL CIPHER":
+                    outputText = fiestalCipherEncrypt(inputText);
+                    break;
+                default:
+                    outputText = "Invalid cipher method!"; fiestalCipherEncrypt(inputText)
+            }
+
+            document.getElementById("outputText").value = outputText;
+        }
+
+        function decryptText() {
+            document.getElementById("outputText").style.color = "Green";
+            let inputText = document.getElementById("inputText").value;
+            let cipherMethod = document.getElementById("cipherMethod").value;
+            let outputText = "";
+
+            // Implement decryption logic based on selected cipher method
+            switch (cipherMethod) {
+                case "CAESAR CIPHER":
+                    outputText = caesarCipherDecrypt(inputText);
+                    break;
+                case "HILL CIPHER":
+                    outputText = hillCipherDecrypt(inputText);
+                    break;
+                case "PLAYFAIR CIPHER":
+                    outputText = playfairCipherDecrypt(inputText);
+                    break;
+                case "MONOALPHABETIC CIPHER":
+                    outputText = monoalphabeticCipherDecrypt(inputText);
+                    break;
+                case "POLYALPHABETIC CIPHER":
+                    outputText = polyalphabeticCipherDecrypt(inputText);
+                    break;
+                case "ONE TIME PAD CIPHER":
+                    outputText = oneTimePadCipherDecrypt(inputText);
+                    break;
+                case "FIESTAL CIPHER":
+                    outputText = fiestalCipherDecrypt(inputText);
+                    break;
+                default:
+                    outputText = "Invalid cipher method!";
+            }
+
+            document.getElementById("outputText").value = outputText;
+        }
+
+        // CAESAR CIPHER ************************************************************************************************************
+
+        function caesarCipherEncrypt(text) {
+            let result = "";
+            for (let i = 0; i < text.length; i++) {
+                let charCode = text.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    result += String.fromCharCode(((charCode - 65 + 3) % 26) + 65);
+                } else if (charCode >= 97 && charCode <= 122) {
+                    result += String.fromCharCode(((charCode - 97 + 3) % 26) + 97);
+                } else {
+                    result += text[i];
+                }
+            }
+            return result;
+        }
+
+        function caesarCipherDecrypt(text) {
+            let result = "";
+            for (let i = 0; i < text.length; i++) {
+                let charCode = text.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    result += String.fromCharCode(((charCode - 65 - 3 + 26) % 26) + 65);
+                } else if (charCode >= 97 && charCode <= 122) {
+                    result += String.fromCharCode(((charCode - 97 - 3 + 26) % 26) + 97);
+                } else {
+                    result += text[i];
+                }
+            }
+            return result;
+        }
+
+        // HILL CIPHER ************************************************************************************************************
+
+        function modInverse(a, m) {
+            a = ((a % m) + m) % m;
+            for (let x = 1; x < m; x++) {
+                if ((a * x) % m === 1) {
+                    return x;
+                }
+            }
+            return 1;
+        }
+
+        function matrixMultiply(key, vector) {
+            let result = [];
+            for (let i = 0; i < key.length; i++) {
+                let sum = 0;
+                for (let j = 0; j < key[i].length; j++) {
+                    sum += key[i][j] * vector[j];
+                }
+                result.push(sum % 26);
+            }
+            return result;
+        }
+
+        function hillCipherEncrypt(plaintext) {
+            const key = [[6, 3], [9, 5]]; // 2x2 key matrix
+            const charToInt = char => char.charCodeAt(0) - 97; // Convert 'a' to 0, 'b' to 1, ...
+            const intToChar = int => String.fromCharCode(int + 97); // Convert 0 to 'a', 1 to 'b', ...
+
+            // Convert plaintext to numerical representation
+            let vector = [];
+            for (let i = 0; i < plaintext.length; i++) {
+                vector.push(charToInt(plaintext[i]));
+            }
+
+            // Pad the vector if its length is odd
+            if (vector.length % 2 !== 0) {
+                vector.push(25); // 'z' is padded as 25
+            }
+
+            // Encrypt each pair of characters
+            let encrypted = '';
+            for (let i = 0; i < vector.length; i += 2) {
+                let pair = [vector[i], vector[i + 1]];
+                let result = matrixMultiply(key, pair);
+                encrypted += intToChar(result[0]) + intToChar(result[1]);
+            }
+
+            return encrypted;
+        }
+
+        function hillCipherDecrypt(ciphertext) {
+            const key = [[6, 3], [9, 5]]; // 2x2 key matrix
+            const charToInt = char => char.charCodeAt(0) - 97; // Convert 'a' to 0, 'b' to 1, ...
+            const intToChar = int => String.fromCharCode(int + 97); // Convert 0 to 'a', 1 to 'b', ...
+            const inverse = modInverse(key[0][0] * key[1][1] - key[0][1] * key[1][0], 26);
+            const inverseKey = [
+                [key[1][1], -key[0][1]],
+                [-key[1][0], key[0][0]]
+            ];
+            for (let i = 0; i < 2; i++) {
+                for (let j = 0; j < 2; j++) {
+                    inverseKey[i][j] = (inverseKey[i][j] * inverse) % 26;
+                    if (inverseKey[i][j] < 0) {
+                        inverseKey[i][j] += 26;
+                    }
+                }
+            }
+
+            // Decrypt each pair of characters
+            let decrypted = '';
+            for (let i = 0; i < ciphertext.length; i += 2) {
+                let pair = [charToInt(ciphertext[i]), charToInt(ciphertext[i + 1])];
+                let result = matrixMultiply(inverseKey, pair);
+                decrypted += intToChar(result[0]) + intToChar(result[1]);
+            }
+
+            return decrypted;
+        }
+
+
+        // PLAYFAIR CIPHER **********************************************************************************************************
+        // Function to generate Playfair matrix from key
+        function generatePlayfairMatrix(key) {
+            const matrix = Array(5)
+                .fill(null)
+                .map(() => Array(5).fill(null));
+            const keyWithoutDuplicates = key
+                .replace(/[^A-Za-z]/g, "")
+                .toUpperCase()
+                .split("")
+                .filter((value, index, self) => self.indexOf(value) === index);
+            const alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ".split("");
+
+            let index = 0;
+            for (let i = 0; i < 5; i++) {
+                for (let j = 0; j < 5; j++) {
+                    if (index < keyWithoutDuplicates.length) {
+                        matrix[i][j] = keyWithoutDuplicates[index++];
+                    } else {
+                        const letterIndex = alphabet.findIndex((letter) => !keyWithoutDuplicates.includes(letter));
+                        matrix[i][j] = alphabet[letterIndex];
+                        alphabet.splice(letterIndex, 1);
+                    }
+                }
+            }
+
+            return matrix;
+        }
+
+        // Function to prepare plaintext for Playfair cipher
+        function preparePlayfairPlaintext(plaintext) {
+            return plaintext.replace(/[^A-Za-z]/g, "").toUpperCase().replace(/J/g, "I");
+        }
+
+        // Function to encrypt plaintext using Playfair cipher
+        function playfairCipherEncrypt(plaintext) {
+            const key = "KEYWORD";
+            const matrix = generatePlayfairMatrix(key);
+            let preparedText = preparePlayfairPlaintext(plaintext);
+            if (preparedText.length % 2 !== 0) {
+                preparedText += "X"; // Add X to make pairs
+            }
+
+            let ciphertext = "";
+            for (let i = 0; i < preparedText.length; i += 2) {
+                const [char1, char2] = preparedText.slice(i, i + 2);
+                let row1, col1, row2, col2;
+                for (let r = 0; r < 5; r++) {
+                    for (let c = 0; c < 5; c++) {
+                        if (matrix[r][c] === char1) {
+                            row1 = r;
+                            col1 = c;
+                        }
+                        if (matrix[r][c] === char2) {
+                            row2 = r;
+                            col2 = c;
+                        }
+                    }
+                }
+                if (row1 === row2) {
+                    ciphertext += matrix[row1][(col1 + 1) % 5] + matrix[row2][(col2 + 1) % 5];
+                } else if (col1 === col2) {
+                    ciphertext += matrix[(row1 + 1) % 5][col1] + matrix[(row2 + 1) % 5][col2];
+                } else {
+                    ciphertext += matrix[row1][col2] + matrix[row2][col1];
+                }
+            }
+
+            return ciphertext;
+        }
+
+        // Function to decrypt ciphertext using Playfair cipher
+        function playfairCipherDecrypt(ciphertext) {
+            const key = "KEYWORD";
+            const matrix = generatePlayfairMatrix(key);
+            let plaintext = "";
+
+            for (let i = 0; i < ciphertext.length; i += 2) {
+                const [char1, char2] = ciphertext.slice(i, i + 2);
+                let row1, col1, row2, col2;
+                for (let r = 0; r < 5; r++) {
+                    for (let c = 0; c < 5; c++) {
+                        if (matrix[r][c] === char1) {
+                            row1 = r;
+                            col1 = c;
+                        }
+                        if (matrix[r][c] === char2) {
+                            row2 = r;
+                            col2 = c;
+                        }
+                    }
+                }
+                if (row1 === row2) {
+                    plaintext += matrix[row1][(col1 + 4) % 5] + matrix[row2][(col2 + 4) % 5];
+                } else if (col1 === col2) {
+                    plaintext += matrix[(row1 + 4) % 5][col1] + matrix[(row2 + 4) % 5][col2];
+                } else {
+                    plaintext += matrix[row1][col2] + matrix[row2][col1];
+                }
+            }
+
+            return plaintext;
+        }
+
+        // MONOAPLHABETIC CIPHER ****************************************************************************************************
+        // Function to generate a random key for monoalphabetic cipher
+        function generateRandomKey() {
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const shuffledAlphabet = alphabet.split("").sort(() => Math.random() - 0.5).join("");
+            return shuffledAlphabet;
+        }
+
+        const makey = generateRandomKey();
+
+        // Function to encrypt plaintext using monoalphabetic cipher
+        function monoalphabeticCipherEncrypt(plaintext) {
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const encryptedText = plaintext.toUpperCase().replace(/[A-Z]/g, (char) => makey[alphabet.indexOf(char)]);
+            return encryptedText;
+        }
+
+        // Function to decrypt ciphertext using monoalphabetic cipher
+        function monoalphabeticCipherDecrypt(ciphertext) {
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const decryptedText = ciphertext.toUpperCase().replace(/[A-Z]/g, (char) => alphabet[makey.indexOf(char)]);
+            return decryptedText;
+        }
+        // POLYALPHABETIC CIPHER ****************************************************************************************************
+        // Function to generate a Vigenère table
+        function generateVigenereTable() {
+            const table = [];
+            for (let i = 0; i < 26; i++) {
+                const row = [];
+                for (let j = 0; j < 26; j++) {
+                    row.push(String.fromCharCode(((i + j) % 26) + 65));
+                }
+                table.push(row);
+            }
+            return table;
+        }
+
+        // Function to generate repeating key for Vigenère cipher
+        function generateRepeatingKey(key, length) {
+            let repeatingKey = "";
+            for (let i = 0; i < length; i++) {
+                repeatingKey += key[i % key.length].toUpperCase();
+            }
+            return repeatingKey;
+        }
+
+        // Function to encrypt plaintext using Vigenère cipher
+        function polyalphabeticCipherEncrypt(plaintext) {
+            const key = "KEY";
+            const table = generateVigenereTable();
+            const repeatingKey = generateRepeatingKey(key, plaintext.length);
+            let ciphertext = "";
+            for (let i = 0; i < plaintext.length; i++) {
+                const plainChar = plaintext[i].toUpperCase();
+                const keyChar = repeatingKey[i];
+                if (plainChar >= "A" && plainChar <= "Z") {
+                    ciphertext += table[plainChar.charCodeAt(0) - 65][keyChar.charCodeAt(0) - 65];
+                } else {
+                    ciphertext += plainChar;
+                }
+            }
+            return ciphertext;
+        }
+
+        // Function to decrypt ciphertext using Vigenère cipher
+        function polyalphabeticCipherDecrypt(ciphertext) {
+            const key = "KEY";
+            const table = generateVigenereTable();
+            const repeatingKey = generateRepeatingKey(key, ciphertext.length);
+            let plaintext = "";
+            for (let i = 0; i < ciphertext.length; i++) {
+                const cipherChar = ciphertext[i].toUpperCase();
+                const keyChar = repeatingKey[i];
+                if (cipherChar >= "A" && cipherChar <= "Z") {
+                    const row = table[keyChar.charCodeAt(0) - 65];
+                    plaintext += String.fromCharCode(row.indexOf(cipherChar) + 65);
+                } else {
+                    plaintext += cipherChar;
+                }
+            }
+            return plaintext;
+        }
+
+        // ONE TIME PAD CIPHER ******************************************************************************************************
+
+        otpkey = [5, 8, 20, 1, 0];
+
+        // Function to encrypt plaintext using One-Time Pad cipher
+        function oneTimePadCipherEncrypt(plaintext) {
+            plaintext = plaintext.toUpperCase();
+            if (plaintext.length !== otpkey.length) {
+                throw new Error("Plaintext and key lengths must be equal.");
+            }
+            const encryptedText = [];
+            for (let i = 0; i < plaintext.length; i++) {
+                const charCode = plaintext.charCodeAt(i) - 65; // Convert A-Z to 0-25
+                const encryptedCharCode = (charCode + otpkey[i]) % 26; // Add key and wrap around
+                encryptedText.push(String.fromCharCode(encryptedCharCode + 65)); // Convert back to A-Z
+            }
+            return encryptedText.join("");
+        }
+
+        // Function to decrypt ciphertext using One-Time Pad cipher
+        function oneTimePadCipherDecrypt(ciphertext) {
+            if (ciphertext.length !== otpkey.length) {
+                throw new Error("Ciphertext and key lengths must be equal.");
+            }
+            const decryptedText = [];
+            for (let i = 0; i < ciphertext.length; i++) {
+                const charCode = ciphertext.charCodeAt(i) - 65; // Convert A-Z to 0-25
+                let decryptedCharCode = charCode - otpkey[i]; // Subtract key
+                if (decryptedCharCode < 0) {
+                    decryptedCharCode += 26; // Handle negative result
+                }
+                decryptedText.push(String.fromCharCode(decryptedCharCode + 65)); // Convert back to A-Z
+            }
+            return decryptedText.join("");
+        }
+        // FIESTAL CIPHER ***********************************************************************************************************
+
+
+        function xor(a, b) {
+            // Perform bitwise XOR operation on two binary strings
+            let result = "";
+            for (let i = 0; i < a.length; i++) {
+                result += (a[i] ^ b[i]).toString();
+            }
+            return result;
+        }
+
+        function binaryToDecimal(binary) {
+            // Convert binary string to decimal integer
+            return parseInt(binary, 2);
+        }
+
+        function decimalToBinary(decimal, paddingLength = 8) {
+            // Convert decimal integer to binary string with padding
+            return decimal.toString(2).padStart(paddingLength, "0");
+        }
+
+        function fiestalCipherEncrypt(text) {
+            const encryptionKey = "00110001111100000111100011000111";
+            const numRounds = 4;
+            // Convert text to binary string
+            const binaryText = text.split("").map(char => char.charCodeAt(0).toString(2).padStart(8, "0")).join("");
+
+            // Split binary text into left and right halves
+            const n = Math.floor(binaryText.length / 2);
+            let leftHalf = binaryText.slice(0, n);
+            let rightHalf = binaryText.slice(n);
+
+            // Perform encryption rounds
+            for (let i = 0; i < numRounds; i++) {
+                const roundencryptionKey = encryptionKey.slice(i * 2, (i + 1) * 2);
+                const f = xor(rightHalf, roundencryptionKey); // Replace with a more secure round function
+                const encryptedRight = xor(f, leftHalf);
+                leftHalf = rightHalf;
+                rightHalf = encryptedRight;
+            }
+
+            // Combine encrypted halves and convert back to text
+            const encryptedBinary = leftHalf + rightHalf;
+            const encryptedText = encryptedBinary.match(/(.{8})/g).map(byte => String.fromCharCode(binaryToDecimal(byte))).join("");
+
+            return encryptedText;
+        }
+
+        function fiestalCipherDecrypt(encryptedText) {
+            const encryptionKey = "00110001111100000111100011000111";
+            const numRounds = 4;
+            // Convert encrypted text to binary string
+            const binaryText = encryptedText.split("").map(char => char.charCodeAt(0).toString(2).padStart(8, "0")).join("");
+
+            // Split binary text into left and right halves
+            const n = Math.floor(binaryText.length / 2);
+            let leftHalf = binaryText.slice(0, n);
+            let rightHalf = binaryText.slice(n);
+
+            // Perform decryption rounds
+            for (let i = numRounds - 1; i >= 0; i--) {
+                const roundencryptionKey = encryptionKey.slice(i * 2, (i + 1) * 2);
+                const f = xor(rightHalf, roundencryptionKey); // Replace with a more secure round function
+                const decryptedLeft = xor(f, leftHalf);
+                rightHalf = leftHalf;
+                leftHalf = decryptedLeft;
+            }
+
+            // Combine decrypted halves and convert back to text
+            const decryptedBinary = leftHalf + rightHalf;
+            const decryptedText = decryptedBinary.match(/(.{8})/g).map(byte => String.fromCharCode(binaryToDecimal(byte))).join("");
+
+            return decryptedText;
+        }
+
+
+    </script>
+
+</body>
+
+</html>
